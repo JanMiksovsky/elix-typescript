@@ -1,0 +1,9 @@
+{
+  "name": "hello-typescript",
+  "dependencies": {
+    "webcomponents.js": "webcomponents/webcomponentsjs#1.0.0-rc.11"
+  },
+  "scripts": {
+    "watch": "tsc --watch"
+  }
+}
