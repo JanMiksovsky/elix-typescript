@@ -16,7 +16,7 @@ class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement))
         }
         item.classList.toggle('selected', selected);
     }
-    get template() {
+    get [symbols.template]() {
         return `
       <style>
         :host {
