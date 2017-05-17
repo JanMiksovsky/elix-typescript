@@ -1,4 +1,4 @@
-import GreetMixin from './GreetMixin.js';
+// import GreetMixin from './GreetMixin.js';
 import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
 
 class TestElement extends ShadowTemplateMixin(HTMLElement) {

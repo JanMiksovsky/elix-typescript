@@ -1,3 +1,3 @@
-type Constructor<T> = new(...args: any[]) => T;
+type ElementConstructor = new(...args: any[]) => HTMLElement;
 
-export default function ShadowTemplateMixin<T extends Constructor<HTMLElement>>(Base: T): T;
+export default function ShadowTemplateMixin<T extends ElementConstructor>(Base: T): T;
