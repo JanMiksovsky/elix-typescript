@@ -11,10 +11,32 @@
   <!-- <script src="./node_modules/webcomponentsjs/webcomponents-loader.js"></script> -->
   <script type="module" src="./src/TestElement.js"></script>
 
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      margin: 0;
+      padding: 25px;
+    }
+
+    :not(:defined) {
+      display: none;
+    }
+  </style>
+
 </head>
 
 <body>
-  <test-element>world</test-element>
+  <p>
+    Click an item to select it:
+  </p>
+  <test-element>
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>Five</div>
+  </test-element>
 </body>
 
 </html>
