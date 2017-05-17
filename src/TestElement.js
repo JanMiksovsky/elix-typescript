@@ -1,5 +1,6 @@
 import SingleSelectionMixin from '../lib/SingleSelectionMixin.js';
 import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
+import symbols from '../lib/symbols.js';
 class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement)) {
     constructor() {
         super();
@@ -9,9 +10,9 @@ class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement))
             event.stopPropagation();
         });
     }
-    applySelection(item, selected) {
-        if (super.applySelection) {
-            super.applySelection(item, selected);
+    [symbols.applySelection](item, selected) {
+        if (super[symbols.applySelection]) {
+            super[symbols.applySelection](item, selected);
         }
         item.classList.toggle('selected', selected);
     }
