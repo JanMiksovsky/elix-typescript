@@ -1,7 +1,7 @@
 function GreetMixin(Base) {
     class Greet extends Base {
         greet() {
-            console.log(`Hello, ${this.textContent}.`);
+            console.log(`Hello, ${this.textContent}!`);
         }
     }
     return Greet;

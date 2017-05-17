@@ -1,16 +1,17 @@
 import GreetMixin from './GreetMixin.js';
+import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
 
-class TestElement extends GreetMixin(HTMLElement) {
+class TestElement extends ShadowTemplateMixin(HTMLElement) {
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
+    console.log(this.textContent);
+  }
+
+  get template() {
+    return `
       Hello, <slot></slot>!
     `;
-    this.addEventListener('click', () => {
-      this.greet();
-    });
   }
 
 }
