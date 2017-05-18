@@ -2,14 +2,18 @@ import SingleSelectionMixin from '../lib/SingleSelectionMixin.js';
 import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
 import symbols from '../lib/symbols.js';
 
+import { foo, bar } from './foo.js';
+
 class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement)) {
 
   constructor() {
     super();
     // When a child is clicked, set the selectedItem.
     this.addEventListener('click', event => {
-      this.selectedItem = event.target;
-      event.stopPropagation();
+      if (event.target instanceof HTMLElement) {
+        this.selectedItem = event.target;
+        event.stopPropagation();
+      }
     });
   }
 

@@ -1,10 +1,10 @@
 // import symbols from './symbols.js';
 
-type ElementConstructor = new(...args: any[]) => HTMLElement;
+type ElementConstructor = new() => HTMLElement;
 
 interface SingleSelection {
   // [symbols.applySelection](item: HTMLElement, selected: boolean): void;
-  selectedItem: Object;
+  selectedItem: HTMLElement;
 }
 
 type SingleSelectionConstructor = new(...args: any[]) => SingleSelection;
