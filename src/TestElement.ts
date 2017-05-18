@@ -3,6 +3,7 @@ import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
 import symbols from '../lib/symbols.js';
 
 import { foo, bar } from './foo.js';
+import { add } from '../lib/bar.js';
 
 class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement)) {
 
@@ -14,10 +15,11 @@ class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement))
         this.selectedItem = event.target;
         event.stopPropagation();
       }
+      this[symbols.applySelection]
     });
   }
 
-  [symbols.applySelection](item: HTMLElement, selected: boolean) {
+  [symbols.applySelection](item: Element, selected: boolean) {
     if (super[symbols.applySelection]) { super[symbols.applySelection](item, selected); }
     item.classList.toggle('selected', selected);
   }
