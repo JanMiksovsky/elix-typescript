@@ -1,10 +1,10 @@
-type Constructor<T> = new (...args: any[]) => T;
+type Constructor<T> = new(...args: any[]) => T;
 
-interface MaybeGreet {
+interface PossibleBaseMembers {
   greet?(): void;
 }
 
-function GreetMixin<T extends Constructor<HTMLElement & MaybeGreet>>(Base: T) {
+function GreetMixin<T extends Constructor<HTMLElement & PossibleBaseMembers>>(Base: T) {
   class Greet extends Base {
     greet() {
       if (super.greet) { super.greet(); }
