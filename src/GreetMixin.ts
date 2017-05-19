@@ -1,8 +1,13 @@
-type Constructor<T> = new (...args: any[]) => T
+type Constructor<T> = new (...args: any[]) => T;
 
-function GreetMixin<T extends Constructor<HTMLElement>>(Base: T): T {
+interface MaybeGreet {
+  greet?(): void;
+}
+
+function GreetMixin<T extends Constructor<HTMLElement & MaybeGreet>>(Base: T) {
   class Greet extends Base {
     greet() {
+      if (super.greet) { super.greet(); }
       console.log(`Hello, ${this.textContent}!`);
     }
   }
@@ -10,3 +15,7 @@ function GreetMixin<T extends Constructor<HTMLElement>>(Base: T): T {
 }
 
 export default GreetMixin;
+
+// class Test extends GreetMixin(HTMLElement) {}
+// const test = new Test();
+// test.greet();
