@@ -1,9 +1,7 @@
-import SingleSelectionMixin from '../lib/SingleSelectionMixin.js';
-import ShadowTemplateMixin from '../lib/ShadowTemplateMixin.js';
-import symbols from '../lib/symbols.js';
+import SingleSelectionMixin from '../node_modules/elix/mixins/SingleSelectionMixin.js';
+import ShadowTemplateMixin from '../node_modules/elix/mixins/ShadowTemplateMixin.js';
+import symbols from '../node_modules/elix/mixins/symbols.js';
 
-import { foo, bar } from './foo.js';
-import { add } from '../lib/bar.js';
 
 class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement)) {
 
@@ -11,17 +9,32 @@ class TestElement extends ShadowTemplateMixin(SingleSelectionMixin(HTMLElement))
     super();
     // When a child is clicked, set the selectedItem.
     this.addEventListener('click', event => {
-      if (event.target instanceof HTMLElement) {
+      if (event.target instanceof Element) {
         this.selectedItem = event.target;
         event.stopPropagation();
       }
-      this[symbols.applySelection]
     });
   }
 
-  [symbols.applySelection](item: Element, selected: boolean) {
-    if (super[symbols.applySelection]) { super[symbols.applySelection](item, selected); }
+  attributeChangedCallback(attributeName, oldValue, newValue) {
+    if (attributeName === 'selected-index') {
+      this.selectedIndex = newValue;
+    }
+  }
+
+  // Map item selection to a `selected` CSS class.
+  [symbols.itemSelected](item, selected) {
+    if (super[symbols.itemSelected]) { super[symbols.itemSelected](item, selected); }
     item.classList.toggle('selected', selected);
+  }
+
+  // Simplistic implementation of items property — doesn't handle redistribution.
+  get items() {
+    return this.children;
+  }
+
+  static get observedAttributes() {
+    return ['selected-index'];
   }
 
   get [symbols.template]() {
