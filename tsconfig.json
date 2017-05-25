@@ -5,9 +5,7 @@
     "outDir": "./build",
     "target": "ES6"
   },
-  "files": [
-    "src/TestElement.ts",
-    "node_modules/elix/mixins/ShadowTemplateMixin.js",
-    "node_modules/elix/mixins/SingleSelectionMixin.js"
+  "include": [
+    "src"
   ]
 }

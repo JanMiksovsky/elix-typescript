@@ -1,10 +1,9 @@
-type Constructor<T> = new(...args: any[]) => T;
+/// <reference path="../types.ts"/>
 
-interface PossibleBaseMembers {
-  greet?(): void;
-}
-
-function GreetMixin<T extends Constructor<HTMLElement & PossibleBaseMembers>>(Base: T) {
+/**
+ * A sample mixin.
+ */
+function GreetMixin<T extends ElementWithExpectations<{greet?(): void }>>(Base: T) {
   class Greet extends Base {
     greet() {
       if (super.greet) { super.greet(); }
